@@ -10,6 +10,13 @@ WINDOW_WIDTH = 1100
 WINDOW_HEIGHT = 600
 WINDOW_RES = (WINDOW_WIDTH,WINDOW_HEIGHT)
 
+#Tile parameters
+WIDTH = 100
+HEIGHT = 100
+
+#Define Colors
+WHITE = (255,255,255)
+
 #Create window---------------------------------------------
 GAME_WINDOW = display.set_mode(WINDOW_RES)
 display.set_caption('Attack of the Vampire Pizzas!')
@@ -23,7 +30,16 @@ BACKGROUND = transform.scale(bg_surf,WINDOW_RES)
 #Setup the vampire pizza
 pizza_img = image.load('gameassets/vampire.png')
 pizza_surf = Surface.convert_alpha(pizza_img)
-VAMPIRE_PIZZA = transform.scale(pizza_surf,(100,100))
+VAMPIRE_PIZZA = transform.scale(pizza_surf,(WIDTH,HEIGHT))
+
+#Initialize and draw the background grid-------------------
+tile_color = WHITE
+#draw.rect(BACKGROUND,tile_color,(0,0,WIDTH,HEIGHT),1)
+#Loop to draw the background grid
+for row in range(6):
+    draw.rect(BACKGROUND, tile_color, (0, HEIGHT * row, WIDTH, HEIGHT), 1)
+    for column in range(11):
+        draw.rect(BACKGROUND, tile_color, (WIDTH * column, HEIGHT * row, WIDTH, HEIGHT), 1)
 
 #Display Assets--------------------------------------------
 #Display the background to the screen
@@ -33,8 +49,8 @@ GAME_WINDOW.blit(BACKGROUND,(0,0))
 GAME_WINDOW.blit(VAMPIRE_PIZZA,(150,150))
 
 #Test drawing shapes to the screen-------------------------
-draw.circle(GAME_WINDOW,(255,0,0),(925,425),25,0)
-draw.rect(GAME_WINDOW,(0,0,255),(25,25,50,25),0)
+#draw.circle(GAME_WINDOW,(255,0,0),(925,425),25,0)
+#draw.rect(GAME_WINDOW,(0,0,255),(25,25,50,25),0)
 
 #Main Game Loop---------------------------------------------------
 game_running = True
