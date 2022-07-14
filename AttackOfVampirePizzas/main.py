@@ -32,6 +32,21 @@ pizza_img = image.load('gameassets/vampire.png')
 pizza_surf = Surface.convert_alpha(pizza_img)
 VAMPIRE_PIZZA = transform.scale(pizza_surf,(WIDTH,HEIGHT))
 
+#Setup the project classes---------------------------------
+class Monster(object):
+    eats = 'food'
+    def __init__(self,name):
+        self.name = name
+
+    def speak(self):
+        print(self.name+"speaks")
+
+    def eat(self,meal):
+        if meal == self.eats:
+            print("YUM")
+        else:
+            print("Blech!")
+
 #Initialize and draw the background grid-------------------
 tile_color = WHITE
 #draw.rect(BACKGROUND,tile_color,(0,0,WIDTH,HEIGHT),1)
